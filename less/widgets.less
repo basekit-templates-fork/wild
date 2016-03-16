@@ -1,0 +1,975 @@
+// -----------------------------
+// Table Of Contents
+// -----------------------------
+
+//  1.   Logo
+//  2.   Company Name
+//  3.   Navigation
+//  4.   Feature
+
+//  5.   Image
+//  6.   Gallery
+//  7.   Slideshow
+
+//  8.   Buttons
+//  8.1  -- Standard
+//  8.2  -- Tweet
+//  8.3  -- Dropbox
+//  8.4  -- Click To Call
+//  8.5  -- Paypal
+
+//  9.   Contact Form
+// 10.   Signup Form
+
+// 11.   Social Icons
+// 12.   Twitter Feed
+
+// 13.   Divider (Keyline)
+// 14.   Profile
+// 15.   Map
+
+
+// -----------------------------
+// 1.  Logo
+// -----------------------------
+
+.company-logo {
+}
+
+
+
+// -----------------------------
+// 2.  Company Name
+// -----------------------------
+
+
+.company-link {
+}
+
+
+
+// -----------------------------
+// 3.  Navigation
+// -----------------------------
+
+
+// Folder Item Parent: Gives arrow
+.item-name--parent:after {
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    margin-left: 4px;
+    border: 5px solid transparent;
+    border-top-color: @color-swatch6;
+}
+
+
+
+// -----------------------------
+// 4.  Feature
+// -----------------------------
+
+
+.feature-widget {
+}
+
+
+
+// -----------------------------
+// 5.  Image
+// -----------------------------
+
+
+// Image Captions
+// --------------
+
+.imagewidget__figure {
+    position: relative;
+    overflow: hidden;
+
+    &:hover .imagewidget__caption {
+        left: 0;
+        opacity: 1;
+        visibility: visible;
+        .transition(left 0.5s ease);
+    }
+
+    .imagewidget__caption {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        bottom: 0;
+        left: -100%;
+        .transition(opacity 0.5s ease-out);
+    }
+}
+// Gallery & Slideshow
+.image-title {
+    color: @color__image-title--text;
+    font-family: @font__h4--font-family;
+}
+
+.image-description {
+    color: @color__image-description--text;
+    font-family: @font__h5--font-family;
+}
+
+// Image Widget
+.imagewidget__image-title {
+    color: @color__image-title--text;
+}
+
+.imagewidget__image-description {
+    color: @color__image-description--text;
+    line-height: bkscale(@font__p--line-height, 0.8);
+}
+
+.imagewidget__caption {
+    background-color: @color__image-caption--background;
+    padding: 8px 20px 8px 15px;
+}
+
+
+
+// -----------------------------
+// 6.  Gallery
+// -----------------------------
+
+
+// Gallery Layout
+// --------------
+
+.default-page {
+    .widget__gallery {
+        // Gallery List
+        .gallery-list {
+            .clearfix;
+            padding-top: 10px;
+            &:hover li {
+                opacity: 0.3;
+            }
+        }
+        // Gallery Item
+        .gallery-item {
+            display: inline-block;
+            float: left;
+            margin-right: 3.33%;
+            position: relative;
+            width: 31%;
+            margin-bottom: 2%;
+            vertical-align: top;
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+            // Display at 50% at tablet
+            @media @tablet800px {
+                width: 48%;
+                &:nth-child(2n) {
+                    margin-right: 0!important;
+                }
+                &:nth-child(3n) {
+                    margin-right: 3.33%;
+                }
+            }
+            // Display at 100% at mobile
+            @media @mobile {
+                margin-right: 0!important;
+                width: 100%;
+                margin-bottom: 4%;
+            }
+            .image-link {
+                -webkit-filter: grayscale(0%);
+                .transition(all 0.5s ease-in-out);
+            }
+            &:hover {
+                opacity: 1!important;
+                .image-link {
+                    background-blend-mode: multiply;
+                    opacity: 0.85;
+                    -webkit-filter: grayscale(25%);
+                    text-decoration: none;
+                }
+                figcaption {
+                    .flex-display;
+                    height: 100%;
+                    opacity: 1;
+                    .transition(all 0.5s ease-in-out);
+                    visibility: visible;
+                    overflow: hidden;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        height: 10px;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        .gradient(fade(@color-swatch4, 0%), fade(@color-swatch4, 10%));
+                    }
+                }
+            }
+        }
+        .gallery__figure {
+            .transition(all 0.5s ease-in-out);
+        }
+
+        // Hide Figcaption
+        figcaption {
+            // Flex
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            position: absolute;
+            display: block;
+            height: 0;
+            margin: 0;
+            padding: 0 15px;
+            opacity: 0;
+            text-align: center;
+            top: 0;
+            .transform(scale(0.85));
+            width: 100%;
+            visibility: hidden;
+            @media @mobile {
+                left: 0;
+            }
+            .caption-link:hover {
+                text-decoration: none;
+            }
+            .image-title {
+                color: @color__gallery-title--text;
+                line-height: bkscale(@font__p--line-height, 0.75);
+                text-transform: uppercase;
+                font-family: @font__h4--font-family;
+                letter-spacing: 1px;
+                font-size: 15px;
+                display: block;
+                padding: 6px 12px 5px;
+            }
+            .image-description {
+                color: darken(@color__gallery-description--text, 15%);
+                font-size: 15px;
+                line-height: 24px;
+            }
+        }
+
+        // Use Background Image
+        .image-link {
+            display: block;
+            padding-bottom: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            // Hide Inline Image
+            .image {
+                display: none;
+            }
+        }
+    }
+}
+
+
+// Gallery Images
+// --------------
+
+// Use Background-image Method
+.gallery__image-link {
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+// Hide Img Element
+.gallery__image {
+    display: none;
+}
+
+
+// Gallery Image Captions
+// ----------------------
+
+// Hide Caption
+.gallery__caption {
+    display: none;
+    margin: 0;
+    padding: 20px;
+    background-color: @color-swatch7;
+}
+
+// Show Caption
+.image-link:hover .image-gallery__caption {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+// -----------------------------
+// 7.  Slideshow
+// -----------------------------
+
+
+// Slideshow Height
+.responsiveslideshow,
+.responsiveslideshow__figure {
+    position: relative;
+    height: 500px;
+
+    @media @tablet {
+        height: 410px;
+    }
+
+    @media @mobile {
+        height: 325px;
+    }
+}
+
+.responsiveslideshow {
+    margin: 0 0 60px 0;
+
+    .slides-list {
+        max-height: 500px;
+        overflow: hidden;
+
+        @media @tablet {
+            margin-bottom: 25px;
+            max-height: 410px;
+        }
+
+        @media @mobile {
+            max-height: 325px;
+        }
+    }
+
+    // Slide Caption
+    .caption {
+        background-color: fade(@color__slideshow-caption--background, 50%);
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        padding: 25px 25px 35px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        .transition(all 0.5s ease);
+        max-width: 75%;
+        width: 100%;
+
+        @media @tablet {
+            bottom: 15px;
+            padding: 15px 15px 10px;
+            margin: 0 auto;
+            max-width: 96%;
+        }
+
+        .image-title {
+            color: @color__slideshow-title--text;
+            font-family: @font__h2--font-family;
+            font-size: bkscale(@font__h3--font-size, 0.9);
+            font-weight: @font__h3--font-weight;
+            letter-spacing: @font__h3--letter-spacing;
+            line-height: bkscale(@font__h3--line-height, 0.9);
+            margin-bottom: 4px;
+
+            @media @tablet {
+                font-size: 19px;
+                line-height: 24px;
+                margin-bottom: 8px;
+            }
+        }
+        .image-description {
+            color: darken(@color__slideshow-description--text, 20%);
+            font-family: @font__p--font-family;
+            font-size: @font__p--font-size;
+            font-weight: @font__weight--font-weight;
+            letter-spacing: @font__p--letter-spacing;
+            line-height: @font__p--line-height;
+
+            @media @tablet {
+                font-size: 15px;
+                line-height: 22px;
+            }
+        }
+    }
+
+    // Slide Navigation Controls
+    .slide-navigation {
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        margin: 0;
+        width: 100%;
+
+        @media @tablet {
+            background-color: transparent;
+            bottom: 0;
+            top: initial;
+            height: 60px;
+        }
+
+        button {
+            background-color: @color__body--background;
+            border: none;
+            color: @color-swatch4;
+            padding: 0;
+            position: absolute;
+            height: 100px;
+            width: 45px;
+            top: 200px;
+            .transition(all 0.5s ease);
+
+            @media @tablet {
+                top: initial;
+                width: 35px;
+            }
+
+            .icon:before {
+                margin-right: 0;
+            }
+        }
+
+        // Hides button control text (play, pause etc.)
+        button span.control-text {
+            display: none;
+        }
+
+        // Previous and next arrow styling
+        .previous-button,
+        .next-button {
+            &:before, &:after {
+                font-size: 27px;
+                margin: 0;
+                vertical-align: middle;
+            }
+
+            @media @tablet {
+                top: -190px;
+            }
+
+            @media @mobile {
+                top: -160px;
+            }
+        }
+
+        // Previous arrow
+        .previous-button {
+            left: 0;
+
+            &:before {
+                background-color: transparent;
+                content: "";
+                display: inline-block;
+                border-left: 3px solid lighten(@color__body--background, 100%);
+                border-top: 3px solid lighten(@color__body--background, 100%);
+                position: absolute;
+                left: -2px;
+                right: 0;
+                top: 46px;
+                margin: 0 auto;
+                height: 12px;
+                width: 12px;
+                z-index: 999;
+                .transform(rotate(-45deg));
+            }
+        }
+
+        // Next arrow
+        .next-button {
+            right: 0;
+
+            &:after {
+                background-color: transparent;
+                content: "";
+                display: inline-block;
+                border-left: 3px solid lighten(@color__body--background, 100%);
+                border-top: 3px solid lighten(@color__body--background, 100%);
+                position: absolute;
+                left: 0;
+                right: -25px;
+                top: 52px;
+                margin: 0 auto;
+                height: 12px;
+                width: 12px;
+                z-index: 999;
+                .transform(rotate(135deg));
+            }
+        }
+
+        // Pause button
+        .js-btn-play {
+            background-color: rgba(21, 20, 20, 0.5);
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            padding: 0 5px;
+            height: 55px;
+            width: 55px;
+            top: 220px;
+
+            @media @tablet {
+                display: none;
+                visibility: hidden;
+            }
+
+            &:after {
+                display: none;
+            }
+
+            &:before {
+                content: "\f04b";
+                margin-right: 0;
+                position: relative;
+                right: -2px;
+            }
+
+            &.pause {
+                &:before, &:after {
+                    background-color: @color__slideshow-pagination-item--background;
+                    content: "";
+                    display: inline-block;
+                    margin: 0;
+                    opacity: 1;
+                    position: absolute;
+                    height: 18px;
+                    width: 3px;
+                    top: 16px;
+                    visibility: visible;
+                }
+                &:before {
+                    left: 31px;
+                }
+
+                &:after {
+                    border: none;
+                    left: 21px;
+                }
+            }
+        }
+    }
+
+    // Overlay Slide Pagination Over Image
+    .slide-pagination {
+        display: block;
+        margin: 0;
+        position: absolute;
+        bottom: -45px;
+        width: 100%;
+
+        // Restrict Width of Pagination
+        ul.pagination-list {
+            text-align: center;
+        }
+
+        li.pagination-item {
+            margin-bottom: 0;
+            margin-left: 2px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.selected button {
+                 background-color: @color-swatch2;
+            }
+        }
+
+        // Pagination button
+        button {
+            background-color: lighten(@color__button--background, 50%);
+            .border-radius(100px);
+            padding: 0!important;
+            text-indent: -9999px;
+            height: 12px;
+            width: 12px;
+        }
+    }
+}
+
+.responsiveslideshow {
+    .pause-toggle,
+    .caption {
+        opacity: 0;
+        visibility: hidden;
+
+        @media @tablet {
+            display: none;
+        }
+    }
+
+    .pause-toggle {
+        @media @tablet {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &:hover .pause-toggle,
+    &:hover .caption {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+
+// -----------------------------
+// 8.  Buttons
+// -----------------------------
+
+
+//  8.1  STANDARD
+//  --------------
+
+button,
+.button {
+}
+
+
+//  8.2  TWEET
+//  --------------
+
+.tweet-button {
+}
+
+
+//  8.4  DROPBOX
+//  --------------
+
+.dropbox-button {
+}
+
+
+//  8.5  CLICK TO CALL
+//  --------------
+
+.clicktocall a, .company-phone-number a {
+    .transition(.5s all ease-out);
+    &:hover {
+        color: darken(@color__link--text, 4%);
+        text-decoration: none;
+    }
+}
+
+.phone-number-link {
+	text-rendering: initial;
+
+    @media @tablet {
+        // Applies button styles at mobile
+        .button;
+        padding: 9px 12px;
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+
+
+//  8.5  #PAYPAL
+//  --------------
+
+.paypal-button {
+}
+
+
+
+// -----------------------------
+// 9.  Contact Form
+// -----------------------------
+
+
+// Global form styles are set in 'less > theme.less' (4. #Forms)
+
+.contactform,
+.signupform {
+
+    .form-group {
+        position: relative;
+    }
+    label {
+        background-color: lighten(@color__body--background, 10%);
+        color: @color__form-label--text;
+        display: inline-block;
+        line-height: 1;
+        padding: 10px 14px 8px;
+        text-align: left;
+    }
+    .label--message {
+        padding-bottom: 12px;
+    }
+    legend {
+        color: @color__form-legend--text;
+        display: block;
+        font-family: @font__h2--font-family;
+        font-size: @font__h2--font-size;
+        font-weight: 600;
+        padding: 10px 0 30px;
+    }
+
+    input {
+        padding: 6px 20px;
+    }
+
+    textarea {
+        padding: 12px 20px 6px;
+    }
+
+    button {
+        min-width: 125px;
+        @media @mobile650px {
+            background-color: @color__button--background--hover;
+            color: @color__button--text--hover;
+            width: 100%;
+        }
+    }
+}
+
+
+
+// -----------------------------
+// 10.  Signup Form
+// -----------------------------
+
+// Global form styles are set in 'less > theme.less' (4. #Forms)
+
+.signupform {
+    .form-body {
+        .flex-display;
+        .align-items(flex-end);
+        position: relative;
+
+        @media @mobile {
+            display: block;
+        }
+    }
+
+    .form-group {
+        &:first-child {
+            .flex(1 0 auto);
+            margin-bottom: 0;
+        }
+
+        &:last-child {
+            .flex(0 0 auto);
+            .align-self(flex-display);
+            margin-bottom: 0;
+        }
+
+        @media @mobile {
+            width: 100%!important;
+        }
+    }
+    .button {
+        background-color: @color__button--background--hover;
+        color: @color__button--text--hover;
+        height: 55px;
+
+        @media @mobile {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+}
+
+
+
+// -----------------------------
+// 11.  Social Icons
+// -----------------------------
+
+
+.bk-socialicons {
+    .social-name {
+        display: none;
+        &:before {
+            color: @color__button--text;
+        }
+    }
+    .social-item {
+        background: @color__button--background;
+        color: @color__button--text;
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        padding: 3px 8px;
+        height: 35px;
+        width: 35px;
+        text-align: center;
+		line-height: 33px;
+        .transition(all 0.5s ease-out);
+        &:hover {
+            background-color: lighten(@color__button--background, 10%);
+        }
+    }
+    .social-link {
+        color: @color__button--text;
+        &:hover {
+            text-decoration: none!important;
+        }
+    }
+    .icon:before {
+        font-size: 20px;
+        margin-right: 0;
+    }
+}
+
+
+
+// -----------------------------
+// 12.  Twitter Feed
+// -----------------------------
+
+
+.tweet-item {
+    margin-bottom: 25px;
+    // Image and content inline
+    .avatar, .tweet-wrap {
+        display: inline-block;
+    }
+    // Twitter image
+    .avatar {
+        margin-bottom: 8px;
+        margin-right: 20px;
+        vertical-align: top;
+        .avatar-img {
+            padding-top: 8px;
+        }
+    }
+    // Twitter handle
+    .account-link {
+        color: @color__h3--text;
+        display: block;
+        font-weight: 600;
+        line-height: 25px;
+        margin-bottom: 4px;
+    }
+    .account-name {
+        font-family: @font__h3--font-family;
+        font-size: @font__h3--font-size;
+        font-weight: @font__h3--font-weight;
+    }
+    // Tweet text content
+    .tweet-content {
+        font-size: bkscale(@font__p--font-size, 0.96);
+        line-height: @font__p--line-height;
+        padding-bottom: 0.5em;
+        a {
+            text-decoration: none;
+            word-break: break-word;
+            word-wrap: break-word;
+        }
+    }
+    // Twitter data
+    .tweet-metadata,
+    .tweet-metadata a {
+        color: lighten(@font-swatch6-color, 5%);
+        font-size: bkscale(@font__p--font-size, 0.85);
+    }
+    .tweet-metadata a {
+	    color: darken(@font-swatch6-color, 15%);
+    }
+}
+
+
+
+// -----------------------------
+// 13.  Divider (Keyline)
+// -----------------------------
+
+
+hr.rule {
+    background-color: lighten(@color__body--background, 8%);
+    height: 1px;
+    margin: 10px 0 20px;
+}
+
+
+
+// -----------------------------
+// 14. Profile
+// -----------------------------
+
+
+.address-line {
+    padding-bottom: 2px;
+}
+
+
+
+// -----------------------------
+// 14. Map
+// -----------------------------
+
+
+.bk-map {
+    margin-bottom: 15px;
+}
+
+
+
+// -----------------------------
+// 15. Yelp
+// -----------------------------
+
+
+.bk-yelpreview {
+    background-color: lighten(@color__body--background, 6%);
+    padding: 20px 25px 10px;
+
+    .yelp-title {
+        padding-bottom: 0;
+    }
+
+    .review-list {
+        margin-top: 20px;
+    }
+
+    .review-article {
+        position: relative;
+        background-color: @color__body--background;
+        padding: 20px 25px;
+    }
+
+    .review-title {
+        color: @color__h3--color;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .review-rating {
+        display: inline-block;
+        padding: 5px 8px 0;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        height: 19px;
+        overflow: hidden;
+    }
+
+    .review-footer {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        text-align: right;
+    }
+
+    .timestamp {
+        color: darken(@color__p--text, 10%);
+    }
+}

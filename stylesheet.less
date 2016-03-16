@@ -1,0 +1,745 @@
+// -----------------------------
+// Table of Contents
+// -----------------------------
+
+//  1.   LESS Includes
+//  2.   Mixins
+//  3.   Global
+//  4.   Layout
+//  5.   Header
+//  6.   Main
+//  7.   Footer
+
+
+// -----------------------------
+// 1. LESS Includes
+// -----------------------------
+
+
+// BK LESS Framework Include
+// -------------------------
+
+@import "@{templateCommon}/bk-less-framework-v8.less";
+
+
+// Theme Includes
+// --------------
+
+@import "@{templateLocal}/less/mixins.less";  // Typography
+@import "@{templateLocal}/less/typography.less";  // Typography
+@import "@{templateLocal}/less/widgets.less";     // Widgets
+
+
+// Plugin Includes
+// ---------------
+
+@import "@{templateLocal}/less/plugins/plugin-blog.less";      // Plugin: Blog CSS
+@import "@{templateLocal}/less/plugins/plugin-menu.less";      // Plugin: Menu CSS
+@import "@{templateLocal}/less/plugins/plugin-ecommerce.less"; // Plugin: Ecommerce CSS
+
+
+
+// -----------------------------
+// 2. Global
+// -----------------------------
+
+body {
+    background: image('/images/background.jpg') @color__body--background;
+    background-repeat: no-repeat;
+}
+
+// Links
+.content-widget a {
+    border-bottom: 1px dotted @color__link--text;
+    color: @color__link--text;
+    .transition(all 0.25s ease-out);
+    &:hover {
+        border-bottom: 1px dotted darken(@color__link--text, 4%);
+        color: darken(@color__link--text, 10%);
+        text-decoration: none;
+        .transition(all 0.25s ease-in);
+    }
+}
+
+.emailaddress a {
+    .transition(.5s all ease-out);
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+// Blockquote
+blockquote {
+    border-left: 4px solid fade(@color__secondary, 40%);
+    padding-left: 25px;
+    &:before {
+        content: "";
+    }
+
+    p {
+        padding-bottom: 0;
+    }
+}
+
+// Pre + Code
+pre { font-size: 14px; }
+
+code { padding: 2px 5px; }
+
+// Buttons
+.button {
+    background-color: @color__button--background;
+    border: 2px solid @color__button--border;
+    color: @color__button--text;
+    padding: 8px 22px 6px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    .transition(all 0.65s ease);
+
+    //iOS Fixes
+    border-radius: 0;
+    -webkit-appearance: none;
+
+    &:hover {
+        color: @color__button--text--hover;
+    }
+
+    &:hover:after {
+        height: 100%;
+        width: 200%;
+    }
+    &:after {
+        background: @color__button--background--hover;
+        content: '';
+        position: absolute;
+        z-index: -1;
+        height: 100%;
+        left: -104%;
+        top: 0;
+        .transform(skew(50deg));
+        transition-duration: 0.6s;
+        transform-origin: top left;
+        width: 0;
+    }
+}
+
+// Form Elements
+legend { display: none; }
+
+label {
+    color: @color__form-label--text;
+    font-family: @font__button--font-family;
+    font-size: 12px;
+    font-weight: @font__h4--font-weight;
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+input.input,
+.textarea,
+select,
+.input--search.product-listing__input,
+.product-filters .input--search {
+    background-color: lighten(@color__body--background, 6%);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    color: lighten(@color__p--text 30%);
+    font-family: @font__p--font-family;
+    font-size: 16px;
+    line-height: 1.2;
+    height: 55px;
+
+    //iOS Fix
+    //-webkit-appearance: none;
+}
+
+// Focus State
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+.input--single-line:focus {
+    border: none;
+    box-shadow: none;
+    outline: 0;
+    .transition(.3s all ease-in);
+}
+
+// General Select Elements
+select {
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+
+    &:hover,
+    &:focus {
+        background-color: lighten(@color__body--background, 8%);
+    }
+}
+
+select::-ms-expand{
+  display: none;
+}
+
+.select-wrap {
+    position: relative;
+    &:after {
+        font-family: 'FontAwesome', sans-serif;
+        font-size: 14px;
+        text-rendering: auto;
+        content:"\f0d7";
+        position: absolute;
+        right: 14px;
+        top: 22%;
+    }
+}
+
+
+
+// -----------------------------
+// 3. Layout
+// -----------------------------
+
+
+// Container
+.template-container {
+    margin: 0 auto;
+    padding: 0 25px;
+    max-width: 1400px;
+
+    @media only screen and (max-width: 1250px) {
+        margin: 0 25px;
+        padding: 0;
+    }
+}
+
+.home-page, .default-page {
+    .clearfix;
+}
+
+
+
+// -----------------------------
+// 4. Header
+// -----------------------------
+
+
+.template-header {
+    padding-top: 60px;
+    text-align: center;
+
+    @media @mobile650px {
+        padding-top: 40px;
+    }
+
+    // Adds constrainted width to logo image
+    .bk-logo img {
+        max-width: 500px;
+    }
+}
+
+.template-header + [data-widget-type="content"] {
+    padding: 100px 10px 0;
+    h2 {
+        font-size: 34px;
+    }
+}
+
+
+// Company Name
+// ------------
+
+.companyname {
+    display: block;
+    padding: 20px 0 0;
+
+    @media @tablet800px {
+        text-align: center;
+    }
+}
+
+.company-link {
+    color: @color__companyname--text;
+    &:hover {
+        color: @color__companyname--text;
+        text-decoration: none;
+    }
+}
+
+
+// Social
+// -------
+
+.widget__profile .socialicons {
+    .social-name { display: none; }
+    .icon {
+        color: gainsboro;
+        text-decoration: none!important;
+        &:before {
+            font-size: 22px;
+            margin-right: 0;
+        }
+        &:hover {
+            .transition(all .5s ease-out);
+        }
+    }
+    .icon--twitter:hover { color: #4099FF; }
+    .icon--facebook:hover { color: #335795; }
+    .icon--googleplus:hover { color: #D34836; }
+    .icon--youtube:hover { color: #D34836; }
+    .icon--rss:hover { color: #FF6200; }
+    .icon--linkedin:hover { color: #03659A; }
+}
+
+// Twitter Feed
+// ------------
+
+.twitter {
+    .avatar {
+        float: left;
+        max-width: 98px;
+    }
+    .tweet-wrap {
+        float: left;
+        width: 85%;
+    }
+    .tweet-item {
+        .clearfix;
+    }
+}
+
+// Yelp Review
+// -----------
+
+.review-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+// Copyright
+// ---------
+
+.companycopyright {
+    .copyright {
+        font-size: bkscale(@font__p--font-size, 0.96);
+        margin-top: 12px;
+    }
+}
+
+
+// Navigation
+// ----------
+
+[data-widget-type="extendednavigation"] {
+    margin-top: 45px;
+    // Flex
+    @media @tablet800px {
+        display: block;
+        margin: 1.5rem 0 0.5rem;
+    }
+}
+
+[data-widget-type="companyname"] + [data-widget-type="extendednavigation"] {
+    margin-top: 30px;
+
+    @media @mobile650px {
+        margin-top: 15px;
+    }
+}
+
+// Navigation List
+.bk-extendednavigation {
+    .navigation-body {
+        @media @tablet800px {
+            height: 0;
+            padding: 0;
+            opacity: 0;
+            visibility: hidden;
+            &.open {
+                height: 100%;
+                padding-bottom: 5px;
+                position: relative;
+                opacity: 1;
+                .transition(opacity 0.5s ease);
+                visibility: visible;
+            }
+        }
+        .navigation-list {
+            margin: 0;
+            @media @tablet800px {
+                margin: 18px 0;
+            }
+        }
+    }
+}
+
+// List Item
+.navigation-item {
+    white-space: normal;
+
+    @media @tablet800px {
+        display: block;
+    }
+
+    &:hover {
+        .navigation-list--children {
+            height: auto;
+            padding: 0;
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+            -webkit-transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+            -moz-transition:    height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+            -ms-transition:     height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+            -o-transition:      height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+            visibility: visible;
+        }
+    }
+    .navigation-item .selected .item-name {
+        color: @color__navigation--text--selected;
+    }
+    .item-name {
+        color: @color__navigation--text;
+
+        @media @tablet800px {
+            margin-bottom: 10px;
+        }
+
+        &:hover {
+            color: @color__navigation--text--hover;
+        }
+    }
+    // Folder Styles at Mobile
+    &.folder {
+        .navigation-list--children {
+            @media only screen and (max-width: 1024px) {
+                height: 0;
+                padding: 0;
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        &.open .navigation-list--children {
+             @media only screen and (max-width: 1024px) {
+                border-bottom: 1px solid lighten(@color__body--background, 10%);
+                border-top: 1px solid lighten(@color__body--background, 10%);
+                height: auto;
+                margin-top: 10px;
+                padding: 0;
+                opacity: 1;
+                .transition(opacity 0.75s ease);
+                visibility: visible;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                .navigation-item--child .item-name {
+                    padding: 6px 0;
+                    &:before {
+                        content: "\00a0";
+                        position: relative;
+                    }
+                }
+            }
+            @media @tablet800px {
+                margin: 10px 0;
+                padding: 10px 0;
+                position: relative;
+            }
+        }
+    }
+    // Dropdown Item
+    .item-name {
+        padding: 0 15px;
+        .transition(all 0.5s ease-out);
+        @media @tablet800px {
+            padding: 6px 15px;
+        }
+
+        &:hover {
+            color: @color__navigation--text--hover;
+        }
+    }
+    // Dropdown Arrow
+    .item-name--parent:after {
+        border: 4px solid transparent;
+        border-top-color: @font-swatch6-color;
+        margin: 2px 8px;
+    }
+    &.selected > .item-name {
+        color: @color__navigation--text--selected;
+        font-weight: 600;
+    }
+    // Dropdown Folder
+    .navigation-list--children {
+        display: block;
+        position: absolute;
+        height: 0;
+        padding: 0;
+        opacity: 0;
+        overflow: hidden;
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+        visibility: hidden;
+        transition: height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+        -moz-transition:    height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+        -ms-transition:     height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+        -o-transition:      height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+        -webkit-transition-: height 0.75s ease-in-out, opacity 0.75s ease-in-out, visibility 0.75s ease-in-out;
+
+        .navigation-item:last-child .item-name {
+            @media @tablet800px {
+                margin-bottom: 0;
+            }
+        }
+    }
+    // Dropdown list items
+    .navigation-item--child .item-name {
+        padding: 12px;
+
+        &:first-child {
+            padding-top: 18px;
+
+            @media @tablet800px {
+                padding: 0;
+            }
+        }
+    }
+}
+
+// Toggle Button
+.navigation-toggle {
+    display: none;
+    &:after {
+        content: "+";
+        position: absolute;
+        right: 0;
+    }
+    @media @tablet800px {
+        background: transparent;
+        border-bottom: 2px solid lighten(@color__body--background, 15%);
+        color: @color-swatch4;
+        display: block;
+        font-weight: @font__h4--font-weight;
+        padding: 12px 0;
+        text-align: left;
+        text-transform: uppercase;
+        width: 100%;
+        &:hover {
+            background: transparent;
+        }
+    }
+}
+
+
+
+// -----------------------------
+// 5. Main
+// -----------------------------
+
+
+div[role="main"] {
+    padding: 0 0 25px;
+
+    @media @mobile650px {
+        padding: 0;
+    }
+}
+
+.bk-zone,
+.widget__ecomproduct {
+    padding-top: 35px;
+
+    @media @mobile650px {
+        padding-top: 20px;
+    }
+}
+
+.bk-blogpost{
+    padding-top: 20px;
+}
+
+.home-page [role="main"] {
+    padding: 25px 0 0;
+}
+
+h1 {
+    padding-bottom: 15px;
+    @media @mobile {
+        font-size: bkscale(@font__h1--font-size, 0.85);
+    }
+}
+
+h2 {
+    @media @mobile {
+        font-size: bkscale(@font__h2--font-size, 0.85);
+    }
+}
+
+// Image Widget
+// ------------
+
+.image-description {
+    font-size: bkscale(@font__p--font-size, 0.85);
+}
+
+
+// Masonry Gallery
+// ---------------
+
+.home-page {
+    [data-widget-type="gallery"] {
+        padding-top: 25px;
+    }
+    .gallery-list {
+        .clearfix;
+        &:hover li {
+            opacity: 1;
+        }
+    }
+    .gallery-item {
+
+        // Gallery List Items
+        float: left;
+        padding: 0 12px 24px;
+        height: auto;
+        width: 33.33%;
+
+        @media only screen and (max-width: 1024px) {
+            width: 50%;
+        }
+
+        @media @mobile650px {
+            padding: 0 0 24px;
+            width: 100%;
+        }
+
+        img {
+            -webkit-filter: grayscale(0%);
+            .transition(all 0.5s ease-in-out);
+        }
+        .figcaption:hover {
+            height: 100%;
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            visibility: visible;
+            img {
+                background-blend-mode: multiply;
+                opacity: 0.25;
+                -webkit-filter: grayscale(100%);
+            }
+            .image-link {
+                background-color: @color__gallery-caption--background;
+                text-decoration: none;
+            }
+
+            .caption-link {
+                height: 100%;
+            }
+         }
+
+        // Gallery Anchor Link
+        .image-link {
+            background-image: none!important;
+            height: auto;
+            .transition(all 0.5s ease-in-out);
+            @media @mobile {
+                margin-right: 0;
+            }
+        }
+
+        // Gallery Inline Image
+        .image {
+            display: block;
+            max-width: 100%;
+        }
+    }
+    .gallery__figure {
+        position: relative;
+        .transition(all 0.5s ease-in-out);
+    }
+
+    // Image Caption
+    figcaption {
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: block;
+        opacity: 0;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        .transition(all 0.5s ease-in-out);
+
+        @media @mobile {
+            left: 0;
+        }
+
+        .caption-link {
+            // Flex
+            .flex-display;
+            .align-items(center);
+            .justify-content(center);
+            height: 100%;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .image-link {
+            background-color: @color__gallery-caption--background;
+            text-decoration: none;
+        }
+
+        .image-title {
+            color: white;
+            text-transform: uppercase;
+            font-family: @font__h4--font-family;
+            letter-spacing: 2px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 2px solid rgba(255,255,255, 0.2);
+            display: inline-block;
+            padding: 10px 12px 8px;
+        }
+        .image-description {
+            display: none;
+        }
+
+        &:hover {
+            background-color: fade(@color__gallery-caption--background, 75%);
+            opacity: 1;
+        }
+    }
+}
+
+
+
+// -----------------------------
+// 6. Footer
+// -----------------------------
+
+
+.template-footer {
+    border-top: 1px solid lighten(@color__body--background, 5%);
+    padding: 35px 15px 15px;
+    text-align: center;
+
+    [data-widget-type="content"] {
+        padding-top: 10px;
+    }
+}
+
+
+// New Colour Variables
+
+//@import "@{templateLocal}/bk-v8-test.less";
