@@ -252,7 +252,8 @@
     // Product Image Container
     .product-images {
         margin-bottom: 25px;
-        max-height: 450px;
+        max-height: 700px;
+        position: relative;
         width: 100%;
         @media @tablet800px {
             max-height: none;
@@ -260,22 +261,18 @@
 
         // Single Product Image
         .product-image {
-            background-color: darken(@color__body--background, 5%);
             display: inline-block;
-            margin-bottom: 25px;
-            width: 80%;
+            width: 100%;
             vertical-align: top;
             @media @tablet800px {
                 display: block;
-                width: 100%;
             }
         }
         .image-link {
+            background-color: #000000;
+            min-height: 400px;
             height: auto;
-            line-height: 450px;
-            height: 450px;
-            max-width: 790px;
-            text-align: left;
+            line-height: initial;
             @media @mobile {
                 background-color: none;
                 height: initial;
@@ -284,7 +281,7 @@
             }
         }
         .image {
-            max-height: 450px;
+            max-height: 700px;
              @media @mobile {
                 background-color: none;
                 height: initial;
@@ -296,13 +293,12 @@
 
     // Image Gallery Thumbnails
     .product-gallery {
-        display: inline-block;
-        margin: 0 0 0 4%;
-        max-height: 450px;
-        position: relative;
+        margin: 0;
+        position: absolute;
+        top: 15px;
+        right: 15px;
         overflow: hidden;
         vertical-align: top;
-        width: 15%;
         @media @tablet800px {
             display: block;
             margin: 10px 0;
@@ -310,18 +306,12 @@
             width: initial;
         }
         .gallery-item {
-            height: 120px;
-            line-height: 120px;
+            display: block;
+            height: 70px;
+            line-height: 70px;
             font-size: 0;
-            margin-bottom: 20px;
-            margin-right: 15px;
-            width: 100%;
-            @media @tablet800px {
-                line-height: 70px;
-                margin-bottom: 15px;
-                height: 70px;
-                width: 70px;
-            }
+            margin-bottom: 12px;
+            width: 70px;
             &:last-of-type {
                 margin-right: 0;
             }
@@ -331,14 +321,13 @@
     // Product Content
     .product-content {
         position: relative;
+        text-align: center;
         @media @tablet800px {
             width: 100%;
         }
     }
 
     .product-actions {
-        .flex-display(inline-flex);
-        .align-items(flex-end);
         margin-top: 20px;
 
         @media @mobile650px {
@@ -383,6 +372,11 @@
         }
     }
 
+    .product-body {
+        margin: 0 auto;
+        max-width: 700px;
+    }
+
     // Product Description
     .product-description {
         color: lighten(@font-swatch5-color, 25%);
@@ -392,25 +386,31 @@
 
     // Product Form Group (Select & Buttons)
     .product-actions {
-        margin: 5px 0 20px;
+        margin: 20px auto;
+        max-width: 350px;
         position: relative;
 
         // Variations Wrapper
         .ecomproduct__fieldset {
             margin-bottom: 30px;
-            .ecomproduct__form-group {
+           .ecomproduct__form-group {
                 display: block;
             }
         }
         .form {
-            display: inline-block;
-            margin-right: 10px;
             @media @mobile {
+                width: 100%;
+            }
+
+            .button {
+                display: block;
+                margin-bottom: 12px;
                 width: 100%;
             }
         }
         .form-group {
             margin-bottom: 0;
+            width: 100%;
         }
 
         // Variations Select
@@ -436,6 +436,7 @@
         .view-basket-wrap a {
             background-color: lighten(@color__body--background, 6%);
             color: lighten(@color__body--background, 100%);
+            display: block;
             padding: 10px 22px 8px;
             &:hover {
                 background-color: lighten(@color__body--background, 10%);
@@ -464,7 +465,8 @@
 
     // View Basket Button Wrapper
     .view-basket-wrap {
-        display: inline-block;
+        display: block;
+        width: 100%;
         @media @mobile {
             left: initial;
             margin-top: 15px;
@@ -497,7 +499,7 @@
 
 // Product Category & Tags
 .product-attributes {
-    margin: 50px 0 20px;
+    margin: 30px 0 20px;
     p, a {
         color: @font__h3--color;
         display: inline-block;
