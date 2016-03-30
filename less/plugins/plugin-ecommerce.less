@@ -269,8 +269,8 @@
             }
         }
         .image-link {
-            background-color: #000000;
-            min-height: 400px;
+            background-color: transparent;
+            min-height: 200px;
             height: auto;
             line-height: initial;
             @media @mobile {
@@ -282,11 +282,20 @@
         }
         .image {
             max-height: 700px;
+            @media @tablet800px {
+                max-height: 400px;
+            }
+            @media @tablet {
+                max-height: 350px;
+            }
+            @media @mobile650px {
+                max-height: 250px;
+            }
              @media @mobile {
                 background-color: none;
                 height: initial;
                 line-height: initial;
-                max-height: 350px;
+                max-height: 200px;
             }
         }
     }
@@ -294,11 +303,10 @@
     // Image Gallery Thumbnails
     .product-gallery {
         margin: 0;
-        position: absolute;
-        top: 15px;
-        right: 15px;
+        position: relative;
         overflow: hidden;
         vertical-align: top;
+        text-align: center;
         @media @tablet800px {
             display: block;
             margin: 10px 0;
@@ -306,7 +314,7 @@
             width: initial;
         }
         .gallery-item {
-            display: block;
+            display: inline-block;
             height: 70px;
             line-height: 70px;
             font-size: 0;
@@ -314,6 +322,12 @@
             width: 70px;
             &:last-of-type {
                 margin-right: 0;
+            }
+        }
+        .image--thumb {
+            max-height: 70px;
+            @media @mobile {
+                max-height: 60px;
             }
         }
     }
@@ -622,35 +636,35 @@
     }
 }
 
-.ecom-view-more {
-    background-color: @color__body--background;
-    display: block;
-    padding: 5px 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    @media @tablet800px {
-        display: none;
-    }
-    &:hover {
-        text-decoration: none;
-    }
-    &:before {
-        color: fade(@color__p--text, 80%);
-        content: "\f107";
-        display: block;
-        font-family: 'FontAwesome', sans-serif;
-        font-size: 26px;
-        position: relative;
-        text-align: center;
-        .transition(all 0.5s ease);
-    }
-    &:hover:before {
-        color: darken(@color-swatch5, 10%);
-    }
-}
+// .ecom-view-more {
+//     background-color: @color__body--background;
+//     display: block;
+//     padding: 5px 0;
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     text-align: center;
+//     width: 100%;
+//     @media @tablet800px {
+//         display: none;
+//     }
+//     &:hover {
+//         text-decoration: none;
+//     }
+//     &:before {
+//         color: fade(@color__p--text, 80%);
+//         content: "\f107";
+//         display: block;
+//         font-family: 'FontAwesome', sans-serif;
+//         font-size: 26px;
+//         position: relative;
+//         text-align: center;
+//         .transition(all 0.5s ease);
+//     }
+//     &:hover:before {
+//         color: darken(@color-swatch5, 10%);
+//     }
+// }
 
 
 
