@@ -47,6 +47,7 @@ body {
     background: image('/images/background.jpg') @color__body--background;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 // Links
@@ -501,18 +502,17 @@ select::-ms-expand{
                 margin-bottom: 0;
             }
         }
-    }
-    // Dropdown list items
-    .navigation-item--child .item-name {
-        padding: 12px;
-
-        &:first-child {
+        .navigation-item--child:first-child {
             padding-top: 18px;
 
             @media @tablet800px {
                 padding: 0;
             }
         }
+    }
+    // Dropdown list items
+    .navigation-item--child .item-name {
+        padding: 12px;
     }
 }
 

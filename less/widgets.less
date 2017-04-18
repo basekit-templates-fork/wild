@@ -90,17 +90,15 @@
     &:hover .imagewidget__caption {
         left: 0;
         opacity: 1;
-        visibility: visible;
-        .transition(left 0.5s ease);
+        transition: left 0.5s ease-out, opacity 0.5s ease-out;
     }
 
     .imagewidget__caption {
         position: absolute;
         opacity: 0;
-        visibility: hidden;
         bottom: 0;
         left: -100%;
-        .transition(opacity 0.5s ease-out);
+        transition: left 0.75s ease-out, opacity 0.75s ease-out;
     }
 }
 // Gallery & Slideshow
@@ -247,15 +245,16 @@
                 line-height: bkscale(@font__p--line-height, 0.75);
                 text-transform: uppercase;
                 font-family: @font__h4--font-family;
+                font-size: @font__h4--font-size;
+                line-height @font__h4--line-height;
                 letter-spacing: 1px;
-                font-size: 15px;
                 display: block;
                 padding: 6px 12px 5px;
             }
             .image-description {
-                color: darken(@color__gallery-description--text, 15%);
-                font-size: 15px;
-                line-height: 24px;
+                color: @color__gallery-description--text;
+                font-size: bkscale(@font__h4--font-size, 0.9);
+                line-height bkscale(@font__h4--line-height, 0.9);
             }
         }
 
@@ -354,11 +353,11 @@
 
     // Slide Caption
     .caption {
-        background-color: fade(@color__slideshow-caption--background, 50%);
+        background-color: fade(@color__slideshow-caption--background, 85%);
         display: block;
         margin: 0 auto;
         width: 100%;
-        padding: 25px 25px 35px;
+        padding: 25px 25px;
         left: 0;
         right: 0;
         text-align: center;
@@ -389,7 +388,7 @@
             }
         }
         .image-description {
-            color: darken(@color__slideshow-description--text, 20%);
+            color: @color__slideshow-description--text;
             font-family: @font__p--font-family;
             font-size: @font__p--font-size;
             font-weight: @font__weight--font-weight;
@@ -536,7 +535,7 @@
 
             &.pause {
                 &:before, &:after {
-                    background-color: @color__slideshow-pagination-item--background;
+                    background-color: @color-swatch4;
                     content: "";
                     display: inline-block;
                     margin: 0;
